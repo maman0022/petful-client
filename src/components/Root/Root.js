@@ -1,12 +1,16 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import LandingPage from '../LandingPage/LandingPage'
+import Adoption from '../Adoption/Adoption'
 
 function Root() {
   return (
     <>
       <main>
-        <Route exact path='/' component={LandingPage} />
+        <Switch>
+          <Route exact path='/' component={LandingPage} />
+          <Route exact path='/adoption' component={Adoption} />
+        </Switch>
       </main>
     </>
   )
