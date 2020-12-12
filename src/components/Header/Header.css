@@ -1,0 +1,14 @@
+header {
+  background-color: darkslategray;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+}
+
+header h1 {
+  text-align: center;
+  margin: 0;
+  padding: 1rem;
+}

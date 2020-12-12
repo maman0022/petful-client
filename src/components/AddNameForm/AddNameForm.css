@@ -1,0 +1,8 @@
+label, input[type=text] {
+  display: block;
+  margin: 0.3rem 0;
+}
+
+input[type=reset], input[type=submit] {
+  margin: 0.3rem;
+}
