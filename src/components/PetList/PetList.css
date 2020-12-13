@@ -13,6 +13,7 @@ section.pet img {
 
 section.pet {
   max-width: 300px;
+  margin: auto 0.5rem;
 }
 
 .adopt-btn {
