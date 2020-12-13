@@ -1,20 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './PeopleList.css'
+import AddNameForm from '../AddNameForm/AddNameForm'
 
 function PeopleList(props) {
+  const [adding, setAdding] = useState(false)
+
   function handleAddName() {
-    props.setAdding(true)
+    setAdding(true)
   }
 
   return (
-    <>
-      <h3>People currently in line</h3>
+    <section className='people'>
+      <h3>People Currently in Line</h3>
       <ol>
-        {props.error && <li className='error-message'>{props.error}</li>}
-        {props.people && props.people.map((person, index) => <li key={index}>{person}</li>)}
+        {props.sharedState.peopleError && <li className='error-message'>{props.sharedState.peopleError}</li>}
+        {props.sharedState.people && props.sharedState.people.map((person, index) => <li key={index}>{person}</li>)}
       </ol>
-      {!props.adding && <button onClick={handleAddName}>Click to Get in Line</button>}
-    </>
+      {!adding && <button onClick={handleAddName}>Click to Get in Line</button>}
+      {adding && <AddNameForm setAdding={setAdding} sharedState={props.sharedState} dispatch={props.dispatch} />}
+    </section>
   )
 }
 

@@ -8,7 +8,7 @@ function Root() {
   return (
     <>
       <Header />
-      <main>
+      <main className='flex-column align-center'>
         <Switch>
           <Route exact path='/' component={LandingPage} />
           <Route exact path='/adoption' component={Adoption} />

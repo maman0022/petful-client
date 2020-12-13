@@ -3,3 +3,12 @@
   color: darkred;
   margin: 0.3rem 0;
 }
+
+.people h3 {
+  text-decoration: underline;
+}
+
+.people {
+  width: 300px;
+  padding-bottom: 10px;
+}

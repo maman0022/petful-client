@@ -1,9 +1,40 @@
 import React, { useState } from 'react'
-import config from '../../config'
+import faker from 'faker'
 import './AddNameForm.css'
 
 function AddNameForm(props) {
   const [error, setError] = useState(false)
+
+  function setTimers(name) {
+    const petInterval = setInterval(() => {
+      const choices = ['dogs', 'cats']
+      const random = Math.floor((Math.random() * 2))
+      const animal = choices[random]
+      const newPets = props.sharedState.pets
+      newPets[animal].splice(0, 1)
+      props.dispatch({ type: 'addpets', data: newPets })
+    }, 5000)
+
+    const peopleInterval = setInterval(() => {
+      const people = props.sharedState.people
+      if (people[0] === name) {
+        clearInterval(petInterval)
+      }
+      else {
+        people.splice(0, 1)
+      }
+      if (people[0] === name) {
+        props.dispatch({ type: 'setuser', data: true })
+      }
+      if (people.length >= 5) {
+        return clearInterval(peopleInterval)
+      }
+      const fakeName = faker.fake("{{name.firstName}} {{name.lastName}}")
+      people.push(fakeName)
+      props.dispatch({ type: 'addpeople', data: people })
+    }, 4999)
+    //set time slighly less than petInterval to fix bug where pet gets removed after name at the top
+  }
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -11,16 +42,12 @@ function AddNameForm(props) {
     if (!name || name.trim() === '') {
       return setError('Name cannot be blank')
     }
-    fetch(`${config.BASE_API_URL}/people`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ name }) })
-      .then(async res => {
-        if (!res.ok) {
-          throw new Error((await res.json()).message)
-        }
-        props.setAdding(false)
-        props.setPeople([...props.people, name])
-        setError(false)
-      })
-      .catch(error => setError(error.message))
+    const people = props.sharedState.people
+    people.push(name)
+    props.setAdding(false)
+    props.dispatch({ type: 'addpeople', data: people })
+    setError(false)
+    setTimers(name)
   }
 
   function handleCancel() {

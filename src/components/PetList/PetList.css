@@ -1,0 +1,21 @@
+section.pet h3 {
+  text-decoration: underline;
+}
+
+section.pet dt {
+  font-weight: bold;
+}
+
+section.pet img {
+  width: 80%;
+  border-radius: 5%;
+}
+
+section.pet {
+  max-width: 300px;
+}
+
+.adopt-btn {
+  margin-bottom: 0.5rem;
+  width: 12ch;
+}

@@ -1,0 +1,20 @@
+#lp-section {
+  padding-bottom: 5%;
+}
+
+#lp-section p {
+  width: 100%;
+  text-align: left;
+  font-size: large;
+  margin-top: 0;
+}
+
+#lp-section h2 {
+  text-align: center;
+}
+
+#lp-section img {
+  max-width: 90%;
+  border-radius: 5%;
+  margin-bottom: 1em;
+}
